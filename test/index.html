@@ -21,6 +21,10 @@ a.btn{display:block;text-align:center;text-decoration:none;background:#2f6fe4;co
 a.btn.g{background:#e8eefc;color:#2f6fe4}
 .done{background:#e9f7ef;border-radius:12px;padding:12px 14px;font-size:14px}
 footer{text-align:center;color:#8a93a6;font-size:12.5px;margin-top:22px}
+.warn{display:none;background:#ffe9e9;border:2px solid #e25555;border-radius:14px;padding:14px;margin-bottom:16px;font-size:15px}
+.warn b{color:#c62828}.warn a.btn{background:#e25555}
+.fix{background:#fff;border-radius:16px;padding:16px;margin-top:14px;box-shadow:0 1px 3px #0001;font-size:14px}
+.fix h2{font-size:17px;margin:0 0 8px}.fix dt{font-weight:700;margin-top:10px;color:#c62828}.fix dd{margin:2px 0 0 0;color:#333}
 </style></head><body><div class="w">
 <h1>앱 테스터 참여 안내</h1>
 <p class="sub">광고 없는 무료 앱 2개의 비공개 테스트에 참여해 주셔서 감사합니다.</p>
@@ -30,7 +34,12 @@ footer{text-align:center;color:#8a93a6;font-size:12.5px;margin-top:22px}
  <div class="app"><img src="cal-icon.png" alt=""><div><b>바탕화면 달력</b><span>구글 캘린더 일정을 바탕화면에 보여 주는 달력</span></div></div>
 </div>
 
-<div class="note">📱 <b>휴대폰</b>에서, Play 스토어에 로그인된 <b>같은 구글 계정</b>으로 아래 ①→②→③ 순서대로 눌러 주세요.</div>
+<div class="warn" id="inapp"><b>⚠ 지금 카카오톡·페이스북 같은 앱 안에서 열려 있습니다.</b><br>
+이 상태에서는 구글 로그인이 막혀서 <b>그룹 가입·테스터 등록이 되지 않습니다.</b> 아래 버튼을 눌러 크롬에서 다시 열어 주세요.
+<a class="btn" id="openChrome" href="#">크롬으로 열기</a>
+<div style="font-size:13px;margin-top:8px;color:#555">버튼이 안 되면: 화면 오른쪽 위(또는 아래) <b>⋮</b> → <b>'다른 브라우저로 열기'</b></div></div>
+<div class="warn" id="ios"><b>⚠ 아이폰에서는 참여할 수 없습니다.</b><br>안드로이드 휴대폰(갤럭시 등)에서 이 페이지를 열어 주세요.</div>
+<div class="note">📱 <b>휴대폰</b>에서, Play 스토어에 로그인된 <b>같은 구글 계정</b>으로, <b>크롬</b>에서 아래 ①→②→③ 순서대로 눌러 주세요.</div>
 
 <div class="step"><h2><span class="n">1</span>테스터 그룹 가입</h2>
 <p>'그룹 가입'을 누르면 승인 없이 바로 가입됩니다.</p>
@@ -49,5 +58,32 @@ footer{text-align:center;color:#8a93a6;font-size:12.5px;margin-top:22px}
 <div class="done">✅ 정식 출시를 하려면 <b>14일 이상 설치</b>되어 있어야 합니다. 2주 동안은 지우지 말아 주세요.<br>
 설치 화면에 '찾을 수 없음'이 나오면 ②번을 다시 누르고 몇 분 뒤에 시도해 주세요.</div>
 
+<div class="fix"><h2>🔧 설치가 안 될 때</h2><dl>
+<dt>"로그인할 수 없음 · 안전하지 않은 브라우저" / 그룹 가입이 안 됨</dt>
+<dd>카카오톡·페이스북·밴드 안에서 열었기 때문입니다. 크롬에서 이 페이지를 다시 열어 주세요.</dd>
+<dt>"앱을 찾을 수 없음" / "요청한 항목을 찾을 수 없음"</dt>
+<dd>② 테스터 등록을 아직 안 했거나, 등록 직후입니다. ②번을 누른 뒤 10분쯤 지나서 다시 설치해 주세요.</dd>
+<dt>"이 앱은 사용할 수 없습니다" / 설치 버튼이 안 보임</dt>
+<dd>그룹에 가입한 계정과 Play 스토어 계정이 다릅니다. Play 스토어 오른쪽 위 프로필 사진을 눌러, 가입한 계정으로 바꿔 주세요. (구글 계정이 2개 이상인 분께 자주 생깁니다)</dd>
+<dt>"기기가 이 버전과 호환되지 않습니다"</dt>
+<dd>안드로이드 8.0보다 오래된 휴대폰입니다. 다봄뷰어는 안드로이드 8.0 이상, 바탕화면 달력은 7.0 이상에서 설치됩니다.</dd>
+<dt>그래도 안 되면</dt>
+<dd>오류 화면을 캡처해서 안내해 준 분께 보내 주세요.</dd>
+</dl></div>
 <footer>EYEfUN</footer>
-</div></body></html>
+</div><script>
+(function(){var ua=navigator.userAgent||'';
+var inapp=/KAKAOTALK|FBAN|FBAV|FB_IAB|Instagram|NAVER|Line\/|DaumApps|BAND|everytimeApp|; wv\)/i.test(ua);
+var url=location.href.split('#')[0];
+if(/iPhone|iPad|iPod/i.test(ua)){document.getElementById('ios').style.display='block';return;}
+if(!inapp)return;
+document.getElementById('inapp').style.display='block';
+var go=function(){
+ if(/KAKAOTALK/i.test(ua)){location.href='kakaotalk://web/openExternal?url='+encodeURIComponent(url);}
+ else{location.href='intent://'+url.replace(/^https?:\/\//,'')+'#Intent;scheme=https;package=com.android.chrome;end';}
+};
+document.getElementById('openChrome').onclick=function(e){e.preventDefault();go();};
+if(/Android/i.test(ua))setTimeout(go,300);
+})();
+</script>
+</body></html>
